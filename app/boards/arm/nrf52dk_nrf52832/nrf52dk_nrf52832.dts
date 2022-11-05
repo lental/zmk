@@ -6,10 +6,12 @@
 
 /dts-v1/;
 #include <nordic/nrf52832_qfaa.dtsi>
+#include <dt-bindings/zmk/matrix_transform.h>
 
 / {
 	model = "Nordic nRF52 DK NRF52832";
 	compatible = "nordic,nrf52-dk-nrf52832";
+
 	kscan0: kscan {
 		compatible = "zmk,kscan-gpio-direct";
 		label = "KSCAN";
@@ -32,8 +34,19 @@
 		zephyr,flash = &flash0;
 		zephyr,code-partition = &slot0_partition;
 		zmk,kscan = &kscan0;
+    zmk,matrix_transform = &default_transform;
 	};
 
+	default_transform: keymap_transform_0 {
+		compatible = "zmk,matrix-transform";
+		columns = <8>;
+		rows = <1>;
+		map = <
+		RC(0,0)  RC(0,1)  RC(0,2)  RC(0,3)  RC(0,4) RC(0,5) RC(0,6) RC(0,7)
+		>;
+	};
+
+	
 	leds {
 		compatible = "gpio-leds";
 		led0: led_0 {

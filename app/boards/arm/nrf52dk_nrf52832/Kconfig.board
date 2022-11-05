@@ -1,11 +1,4 @@
-# nRF52 DK NRF52832 board configuration
-
-/*
- * Copyright (c) 2022 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
+# nRF5
 config BOARD_NRF52DK_NRF52832
 	bool "nRF52 DK NRF52832"
 	depends on SOC_NRF52832_QFAA

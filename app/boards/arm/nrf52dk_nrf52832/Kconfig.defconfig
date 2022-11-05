@@ -1,19 +1,30 @@
 # nRF52 DK NRF52832 board configuration
 
-/*
- * Copyright (c) 2022 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
 config BOARD
-	default "nrf52dk_nrf52832"
-
-config ZMK_KEYBOARD_NAME
-	default "nrf52dk_nrf52832"
+	default "shared"
 	
 config BT_CTLR
 default BT
 
 config ZMK_BLE
 	default y
+
+config ZMK_BLE_CLEAR_BONDS_ON_START
+	default y
+
+if NRF52_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "shared"
+
+#config ZMK_SPLIT_ROLE_CENTRAL
+#	default y
+	
+endif
+
+if NRF52_LEFT || NRF52_RIGHT
+
+#config ZMK_SPLIT
+#	default y
+
+endif

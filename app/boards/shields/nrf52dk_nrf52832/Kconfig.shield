@@ -1,0 +1,5 @@
+config NRF52_LEFT
+	def_bool $(shields_list_contains,nrf52_left)
+
+config NRF52_RIGHT
+	def_bool $(shields_list_contains,nrf52_right)
