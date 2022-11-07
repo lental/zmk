@@ -34,7 +34,7 @@ void configure_led(struct gpio_dt_spec l) {
 		l.port = NULL;
 	}
 	if (l.port) {
-		ret = gpio_pin_configure_dt(&l, (GPIO_OUTPUT | GPIO_OUTPUT_LOW));
+		ret = gpio_pin_configure_dt(&l, (GPIO_OUTPUT_INACTIVE));
 		if (ret != 0) {
 			printk("Error %d: failed to configure LED device %s pin %d\n",
 			       ret, l.port->name, l.pin);
@@ -52,7 +52,7 @@ static struct gpio_callback button_cb_data;
 void button_pressed(const struct device *dev, struct gpio_callback *cb,
 		    uint32_t pins)
 {
-	printk("Button pressed at %" PRIu32 "\n", k_cycle_get_32());
+	printk("testsestsButton pressed at %" PRIu32 "\n", k_cycle_get_32());
 	gpio_pin_toggle_dt(&led_two);
 }
 

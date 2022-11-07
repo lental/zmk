@@ -4,7 +4,10 @@
 if BOARD_NICE_NANO || BOARD_NICE_NANO_V2
 
 config BOARD
-	default "nice_nano"
+	default "shared"
+
+config ZMK_KEYBOARD_NAME
+	default "shared"
 
 if USB_DEVICE_STACK
 
@@ -21,5 +24,14 @@ config ZMK_BLE
 
 config ZMK_USB
 	default y
+
+config ZMK_SPLIT
+	default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+	default y
+
+config ZMK_BLE_SPLIT_CENTRAL_BROADCAST_HID
+  default n
 
 endif # BOARD_NICE_NANO || BOARD_NICE_NANO_V2

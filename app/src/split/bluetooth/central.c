@@ -269,6 +269,13 @@ static uint8_t split_central_chrc_discovery_func(struct bt_conn *conn,
 
     bool subscribed = (slot->run_behavior_handle && slot->subscribe_params.value_handle);
 
+    for (int i = 0; i < ZMK_BLE_SPLIT_PERIPHERAL_COUNT; i++) {
+        if (peripherals[i].state == PERIPHERAL_SLOT_STATE_OPEN) {
+            printk("We have an empty peripheral slot. keep scanning!\n");
+            start_scan();
+            break;
+        }
+    }
     return subscribed ? BT_GATT_ITER_STOP : BT_GATT_ITER_CONTINUE;
 }
 

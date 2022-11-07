@@ -6,6 +6,7 @@
 
 #include <nordic/nrf52840_qiaa.dtsi>
 #include "arduino_pro_micro_pins.dtsi"
+#include <dt-bindings/zmk/matrix_transform.h>
 
 / {
 	model = "nice!nano";
@@ -16,8 +17,30 @@
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
 		zephyr,console = &cdc_acm_uart;
+		zmk,kscan = &kscan0;
+    zmk,matrix_transform = &default_transform;
 	};
 
+	default_transform: keymap_transform_0 {
+		compatible = "zmk,matrix-transform";
+		columns = <12>;
+		rows = <1>;
+		map = <
+		RC(0,0)  RC(0,1)  RC(0,2)  RC(0,3)  
+		RC(0,4) RC(0,5) RC(0,6) RC(0,7)
+		RC(0,8) RC(0,9) RC(0,10) RC(0,11)
+		>;
+	};
+
+	kscan0: kscan {
+		compatible = "zmk,kscan-gpio-direct";
+		label = "KSCAN";
+
+		input-gpios
+		= <&pro_micro 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>,
+		  <&pro_micro 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		;	
+	};
 	leds {
 		compatible = "gpio-leds";
 		blue_led: led_0 {

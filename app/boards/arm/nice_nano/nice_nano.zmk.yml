@@ -1,6 +1,6 @@
 file_format: "1"
 id: nice_nano
-name: nice!nano v1
+name: nice!nano v2
 type: board
 arch: arm
 outputs:

@@ -4,6 +4,7 @@ name: nice!nano v2
 type: board
 arch: arm
 outputs:
+  - keys
   - usb
   - ble
 url: https://nicekeyboards.com/nice-nano
