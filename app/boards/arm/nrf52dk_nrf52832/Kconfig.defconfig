@@ -1,10 +1,7 @@
 # nRF52 DK NRF52832 board configuration
 
 config BOARD
-	default "nrf52 DK"
-	
-config ZMK_KEYBOARD_NAME
- 	default "nrf52 DK"
+	default "shared"
 
 config BT_CTLR
 default BT
@@ -17,12 +14,17 @@ config ZMK_BLE_CLEAR_BONDS_ON_START
 
 
 # If we want to do bluetooth with direct HID From the keyboards, we can enable this
-# if NRF52_LEFT
-# config ZMK_SPLIT_ROLE_CENTRAL
-# 	default y
-# endif
+if NRF52_CENTRAL
 
-if NRF52_LEFT || NRF52_RIGHT
+config ZMK_KEYBOARD_NAME
+ 	default "nrf52 DK"
+ 
+config ZMK_SPLIT_ROLE_CENTRAL
+ 	default y
+
+endif
+
+if NRF52_LEFT || NRF52_RIGHT || NRF52_CENTRAL
 
 config ZMK_SPLIT
 	default y

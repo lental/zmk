@@ -3,3 +3,7 @@ config NRF52_LEFT
 
 config NRF52_RIGHT
 	def_bool $(shields_list_contains,nrf52_right)
+
+
+config NRF52_CENTRAL
+	def_bool $(shields_list_contains,nrf52_central)
