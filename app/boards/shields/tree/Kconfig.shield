@@ -1,0 +1,8 @@
+config TREE_LEFT
+	def_bool $(shields_list_contains,tree_left)
+
+config TREE_RIGHT
+	def_bool $(shields_list_contains,tree_right)
+
+config TREE_CENTRAL
+	def_bool $(shields_list_contains,tree_central)

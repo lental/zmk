@@ -5,5 +5,7 @@
 /zephyr
 /zmk-config
 /build
+*/nlbuild
+*/nnbuild
 *.DS_Store
 __pycache__
