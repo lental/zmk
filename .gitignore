@@ -6,6 +6,7 @@
 /zmk-config
 /build
 */nlbuild
-*/nnbuild
+*/ncbuild
+*/nrbuild
 *.DS_Store
 __pycache__

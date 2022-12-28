@@ -1,7 +1,7 @@
 # nRF52833 DK NRF52833 board configuration
 
 config BOARD
-	default "tree"
+	default "shared"
 
 config BT_CTLR
 default BT
@@ -12,10 +12,21 @@ config ZMK_BLE
 config ZMK_BLE_CLEAR_BONDS_ON_START
 	default y
 
+
+# If we want to do bluetooth with direct HID From the keyboards, we can enable this
+if TREE_CENTRAL
+
 config ZMK_KEYBOARD_NAME
- 	default "tree"
+ 	default "Tree central"
+ 
+config ZMK_SPLIT_ROLE_CENTRAL
+ 	default y
 
+endif
 
-CONFIG_CLOCK_CONTROL=y
-CONFIG_CLOCK_CONTROL_NRF=y
-CONFIG_CLOCK_CONTROL_NRF_K32SRC_RC=y
+if TREE_LEFT || TREE_RIGHT || TREE_CENTRAL
+
+config ZMK_SPLIT
+	default y
+
+endif
