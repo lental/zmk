@@ -4,10 +4,10 @@
 if BOARD_NICE_NANO || BOARD_NICE_NANO_V2
 
 config BOARD
-	default "shared"
+	default "Tree.len()"
 
 config ZMK_KEYBOARD_NAME
-	default "shared"
+	default "Tree.len()"
 
 if USB_DEVICE_STACK
 

@@ -95,7 +95,7 @@ arduino_serial: &uart0 {
 &spi0 {
 	compatible = "nordic,nrf-spi";
 	/* Cannot be used together with i2c0.  */
-	/* disabled  this bc i  think the pins conflict with my  board */
+	/* disabled  this bc i think the pins conflict with my  board */
 	/*
 	status = "okay";
 	sck-pin = <27>;

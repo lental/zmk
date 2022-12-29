@@ -1,7 +1,7 @@
 # nRF52833 DK NRF52833 board configuration
 
 config BOARD
-	default "shared"
+	default "Tree.len()"
 
 config BT_CTLR
 default BT
@@ -17,7 +17,7 @@ config ZMK_BLE_CLEAR_BONDS_ON_START
 if TREE_CENTRAL
 
 config ZMK_KEYBOARD_NAME
- 	default "Tree central"
+ 	default "Tree.len() Central"
  
 config ZMK_SPLIT_ROLE_CENTRAL
  	default y
