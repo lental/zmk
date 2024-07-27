@@ -10,3 +10,14 @@
 */nrbuild
 *.DS_Store
 __pycache__
+
+# macOS
+*.DS_Store
+
+# Python
+__pycache__
+.python-version
+.venv
+
+# clangd
+app/.cache/

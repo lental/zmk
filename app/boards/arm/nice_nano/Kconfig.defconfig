@@ -12,18 +12,12 @@ config ZMK_KEYBOARD_NAME
 if USB_DEVICE_STACK
 
 config USB_NRFX
-	default y
+    default y
 
 endif # USB_DEVICE_STACK
 
 config BT_CTLR
-	default BT
-
-config ZMK_BLE
-	default y
-
-config ZMK_USB
-	default y
+    default BT
 
 config ZMK_SPLIT
 	default y
