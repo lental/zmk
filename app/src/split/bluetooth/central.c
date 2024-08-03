@@ -60,7 +60,7 @@ struct peripheral_slot {
     uint8_t changed_positions[POSITION_STATE_DATA_LEN];
 };
 
-static struct peripheral_slot peripherals[ZMK_SPLIT_BLE_PERIPHERAL_COUNT];
+static struct peripheral_slot peripherals[CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS];
 
 static bool is_scanning = false;
 
@@ -80,7 +80,7 @@ void peripheral_event_work_callback(struct k_work *work) {
 K_WORK_DEFINE(peripheral_event_work, peripheral_event_work_callback);
 
 int peripheral_slot_index_for_conn(struct bt_conn *conn) {
-    for (int i = 0; i < ZMK_SPLIT_BLE_PERIPHERAL_COUNT; i++) {
+    for (int i = 0; i < CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS; i++) {
         if (peripherals[i].conn == conn) {
             return i;
         }
@@ -99,7 +99,7 @@ struct peripheral_slot *peripheral_slot_for_conn(struct bt_conn *conn) {
 }
 
 int release_peripheral_slot(int index) {
-    if (index < 0 || index >= ZMK_SPLIT_BLE_PERIPHERAL_COUNT) {
+    if (index < 0 || index >= CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS) {
         return -EINVAL;
     }
 
@@ -273,7 +273,7 @@ static uint8_t split_central_notify_func(struct bt_conn *conn,
 
 #if IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
 
-static uint8_t peripheral_battery_levels[ZMK_SPLIT_BLE_PERIPHERAL_COUNT] = {0};
+static uint8_t peripheral_battery_levels[CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS] = {0};
 
 int zmk_split_get_peripheral_battery_level(uint8_t source, uint8_t *level) {
     if (source >= ARRAY_SIZE(peripheral_battery_levels)) {
@@ -480,10 +480,10 @@ static uint8_t split_central_chrc_discovery_func(struct bt_conn *conn,
     subscribed = subscribed && slot->batt_lvl_subscribe_params.value_handle;
 #endif /* IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING) */
 
-    for (int i = 0; i < ZMK_BLE_SPLIT_PERIPHERAL_COUNT; i++) {
+    for (int i = 0; i < CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS; i++) {
         if (peripherals[i].state == PERIPHERAL_SLOT_STATE_OPEN) {
             printk("We have an empty peripheral slot. keep scanning!\n");
-            start_scan();
+            start_scanning();
             break;
         }
     }
@@ -842,7 +842,7 @@ static zmk_hid_indicators_t hid_indicators = 0;
 
 static void split_central_update_indicators_callback(struct k_work *work) {
     zmk_hid_indicators_t indicators = hid_indicators;
-    for (int i = 0; i < ZMK_SPLIT_BLE_PERIPHERAL_COUNT; i++) {
+    for (int i = 0; i < CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS; i++) {
         if (peripherals[i].state != PERIPHERAL_SLOT_STATE_CONNECTED) {
             continue;
         }
@@ -874,6 +874,7 @@ int zmk_split_bt_update_hid_indicator(zmk_hid_indicators_t indicators) {
 #endif // IS_ENABLED(CONFIG_ZMK_SPLIT_PERIPHERAL_HID_INDICATORS)
 
 static int finish_init() {
+    start_scanning();
     return IS_ENABLED(CONFIG_ZMK_BLE_CLEAR_BONDS_ON_START) ? 0 : start_scanning();
 }
 

@@ -9,3 +9,4 @@ outputs:
   - ble
 url: https://nicekeyboards.com/nice-nano
 exposes: [pro_micro]
+snippet: zmk-usb-logging

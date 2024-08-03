@@ -151,14 +151,12 @@ static int zmk_peripheral_ble_complete_startup(void) {
     LOG_WRN("Clearing all existing BLE bond information from the keyboard");
 
     bt_unpair(BT_ID_DEFAULT, NULL);
-#else
+#endif
     bt_conn_cb_register(&conn_callbacks);
     bt_conn_auth_info_cb_register(&zmk_peripheral_ble_auth_info_cb);
 
     low_duty_advertising = false;
     k_work_submit(&advertising_work);
-#endif
-
     return 0;
 }
 

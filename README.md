@@ -11,3 +11,19 @@ Check out the website to learn more: https://zmk.dev/.
 You can also come join our [ZMK Discord Server](https://zmk.dev/community/discord/invite).
 
 To review features, check out the [feature overview](https://zmk.dev/docs/). ZMK is under active development, and new features are listed with the [enhancement label](https://github.com/zmkfirmware/zmk/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement) in GitHub. Please feel free to add 👍 to the issue description of any requests to upvote the feature.
+
+
+
+HOW AM I TESTING THIS?
+
+vs code with NRF Connect.
+
+NRF connect for desktop to get correcgt  zephyr  sdk ( or i guess i downloaded correct sdk online)
+
+open app in vscode add as application
+
+use nrf dk wit 5 p ins into the keybaord to the P20 pins,
+
+
+west build --pristine -S zmk-usb-logging  -d ncbuild/ -b nice_nano_v2   && cp ncbuild/zephyr/zmk.uf2 /Volumes/NICENANO/
+

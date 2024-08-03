@@ -4,13 +4,13 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include <bluetooth/conn.h>
-#include <kernel.h>
-#include <device.h>
-#include <init.h>
-#include <drivers/gpio.h>
-#include <sys/sys_io.h>
-#include <devicetree.h>
+#include <zephyr/bluetooth/conn.h>
+#include <zephyr/kernel.h>
+#include <zephyr/device.h>
+#include <zephyr/init.h>
+#include <zephyr/drivers/gpio.h>
+#include <zephyr/sys/sys_io.h>
+#include <zephyr/devicetree.h>
 
 static const struct gpio_dt_spec led_r = GPIO_DT_SPEC_GET_OR(DT_ALIAS(led0), gpios,
 						     {0});
