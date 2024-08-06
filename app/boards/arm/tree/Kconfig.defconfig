@@ -3,15 +3,14 @@
 config BOARD
 	default "Tree.len()"
 
+config ZMK_KEYBOARD_NAME
+	default "Tree.len()"
+
 config BT_CTLR
 default BT
 
 config ZMK_BLE
 	default y
-
-config ZMK_BLE_CLEAR_BONDS_ON_START
-	default y
-
 
 # If we want to do bluetooth with direct HID From the keyboards, we can enable this
 if TREE_CENTRAL

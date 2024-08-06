@@ -58,4 +58,4 @@ CONFIG_BT_DIS=y
 CONFIG_BOARD_ENABLE_DCDC=n
 
 # constant reflashing makes BLE keys/bonds confusing. play it safe and always clear
-CONFIG_ZMK_BLE_CLEAR_BONDS_ON_START=y
+# CONFIG_ZMK_BLE_CLEAR_BONDS_ON_START=y

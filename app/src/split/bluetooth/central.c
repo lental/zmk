@@ -665,7 +665,7 @@ static void split_central_device_found(const bt_addr_le_t *addr, int8_t rssi, ui
 static int start_scanning(void) {
     // No action is necessary if central is already scanning.
     if (is_scanning) {
-        LOG_DBG("Scanning already running");
+      //  LOG_DBG("Scanning already running");
         return 0;
     }
 

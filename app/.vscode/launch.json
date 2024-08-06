@@ -4,8 +4,15 @@
 		{
 			"type": "nrf-connect",
 			"request": "launch",
-			"name": "Launch nrbuild",
+			"name": "Launch nrbuild",  
 			"config": "${workspaceFolder}/nrbuild",
+			"runToEntryPoint": "main"
+		},
+		{
+			"type": "nrf-connect",
+			"request": "launch",
+			"name": "Launch nlbuild",
+			"config": "${workspaceFolder}/nlbuild",
 			"runToEntryPoint": "main"
 		}
 	]
