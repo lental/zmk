@@ -5,6 +5,7 @@
 /zephyr
 /zmk-config
 /build
+*/build_*/
 */nlbuild
 */ncbuild
 */nrbuild

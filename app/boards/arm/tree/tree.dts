@@ -10,7 +10,7 @@
 
 / {
 	model = "treemodel";
-	compatible = "nordic,nRF52";
+	compatible = "mlenn,tree";
 
 	chosen {
 		zephyr,console = &uart0;
