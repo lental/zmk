@@ -148,7 +148,7 @@ void peripheral_event_work_callback(struct k_work *work) {
 K_WORK_DEFINE(peripheral_event_work, peripheral_event_work_callback);
 
 int peripheral_slot_index_for_conn(struct bt_conn *conn) {
-    for (int i = 0; i < CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS; i++) {
+    for (int i = 0; i < ZMK_SPLIT_BLE_PERIPHERAL_COUNT; i++) {
         if (peripherals[i].conn == conn) {
             return i;
         }
@@ -167,7 +167,7 @@ struct peripheral_slot *peripheral_slot_for_conn(struct bt_conn *conn) {
 }
 
 int release_peripheral_slot(int index) {
-    if (index < 0 || index >= CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS) {
+    if (index < 0 || index >= ZMK_SPLIT_BLE_PERIPHERAL_COUNT) {
         return -EINVAL;
     }
 
@@ -226,6 +226,18 @@ int reserve_peripheral_slot(const bt_addr_le_t *addr) {
             peripherals[i].state = PERIPHERAL_SLOT_STATE_CONNECTING;
             return i;
         }
+
+        if (peripherals[i].state == PERIPHERAL_SLOT_STATE_CONNECTED) {
+            char dev[BT_ADDR_LE_STR_LEN];
+            bt_addr_le_to_str(addr, dev, sizeof(dev));
+            LOG_DBG("[DEVICE]: %s, Slot %d  Was connected already! %d", dev, i, peripherals[i].state);
+            // release_peripheral_slot(i);
+            // bt_conn_disconnect(peripherals[i].conn, BT_HCI_ERR_REMOTE_USER_TERM_CONN);
+            //bt_conn_unref(peripherals[i].conn);
+            //peripherals[i].state = PERIPHERAL_SLOT_STATE_CONNECTING;
+            return i;
+        }
+        LOG_DBG("Slot %d not open. it was...  %d", i, peripherals[i].state);
     }
 
     return -ENOMEM;
@@ -401,7 +413,7 @@ static uint8_t split_central_notify_func(struct bt_conn *conn,
 
 #if IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
 
-static uint8_t peripheral_battery_levels[CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS] = {0};
+static uint8_t peripheral_battery_levels[ZMK_SPLIT_BLE_PERIPHERAL_COUNT] = {0};
 
 int zmk_split_get_peripheral_battery_level(uint8_t source, uint8_t *level) {
     if (source >= ARRAY_SIZE(peripheral_battery_levels)) {
@@ -843,11 +855,11 @@ static bool split_central_eir_found(const bt_addr_le_t *addr) {
         BT_LE_CONN_PARAM(CONFIG_ZMK_SPLIT_BLE_PREF_INT, CONFIG_ZMK_SPLIT_BLE_PREF_INT,
                          CONFIG_ZMK_SPLIT_BLE_PREF_LATENCY, CONFIG_ZMK_SPLIT_BLE_PREF_TIMEOUT);
     err = bt_conn_le_create(addr, BT_CONN_LE_CREATE_CONN, param, &slot->conn);
-    if (err < 0) {
-        LOG_ERR("Create conn failed (err %d) (create conn? 0x%04x)", err, BT_HCI_OP_LE_CREATE_CONN);
-        release_peripheral_slot(slot_idx);
-        start_scanning();
-    }
+    // if (err < 0) {
+    //     LOG_ERR("Create conn failed (err %d) (create conn? 0x%04x)", err, BT_HCI_OP_LE_CREATE_CONN);
+    //     release_peripheral_slot(slot_idx);
+    //     start_scanning();
+    // }
 
     return false;
 }
@@ -910,13 +922,13 @@ static void split_central_device_found(const bt_addr_le_t *addr, int8_t rssi, ui
 static int start_scanning(void) {
     // No action is necessary if central is already scanning.
     if (is_scanning) {
-      //  LOG_DBG("Scanning already running");
+        LOG_DBG("Scanning already running");
         return 0;
     }
 
     // If all the devices are connected, there is no need to scan.
     bool has_unconnected = false;
-    for (int i = 0; i < CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS; i++) {
+    for (int i = 0; i < ZMK_SPLIT_BLE_PERIPHERAL_COUNT; i++) {
         if (peripherals[i].conn == NULL) {
             has_unconnected = true;
             break;
@@ -1113,7 +1125,7 @@ static zmk_hid_indicators_t hid_indicators = 0;
 
 static void split_central_update_indicators_callback(struct k_work *work) {
     zmk_hid_indicators_t indicators = hid_indicators;
-    for (int i = 0; i < CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS; i++) {
+    for (int i = 0; i < ZMK_SPLIT_BLE_PERIPHERAL_COUNT; i++) {
         if (peripherals[i].state != PERIPHERAL_SLOT_STATE_CONNECTED) {
             continue;
         }
