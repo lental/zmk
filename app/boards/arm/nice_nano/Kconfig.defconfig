@@ -28,4 +28,7 @@ config ZMK_SPLIT_ROLE_CENTRAL
 config ZMK_BLE_SPLIT_CENTRAL_BROADCAST_HID
   default y
 
+config  ZMK_STUDIO
+	default y
+
 endif # BOARD_NICE_NANO || BOARD_NICE_NANO_V2

@@ -3,6 +3,8 @@ id: nice_nano
 name: nice!nano v2
 type: board
 arch: arm
+features:
+  - studio
 outputs:
   - usb
   - ble
