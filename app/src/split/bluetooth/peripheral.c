@@ -158,6 +158,7 @@ static int zmk_peripheral_ble_complete_startup(void) {
     low_duty_advertising = false;
     k_work_submit(&advertising_work);
 #endif
+
     return 0;
 }
 
