@@ -25,6 +25,18 @@
 		/* kscan in the shields */
 	};
 
+     
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&right_encoder>;
+        triggers-per-rotation = <40>;
+    };
+
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        label = "RIGHT_ENCODER";
+    };
+
 	leds {
 		compatible = "gpio-leds";
 		led0: led_0 {

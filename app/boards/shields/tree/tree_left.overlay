@@ -42,3 +42,9 @@
 		};
 	};
 };
+
+&right_encoder { // these  GPIOs are irrelevant, just to compile
+	a-gpios = <&gpio0 25 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	b-gpios = <&gpio0 26 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	status = "disabled";
+};

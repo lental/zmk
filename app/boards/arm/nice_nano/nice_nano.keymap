@@ -22,15 +22,15 @@
 
         default_layer {
             bindings = <
-    &kp ESC   &kp N1   &kp N2   &kp N3    &kp N4 &kp N5 &kp N6 /**/ &kp N7    &kp N8   &kp N9    &kp N0    &kp MINUS &kp EQUAL &kp GRAVE &kp BSLH &kp PG_UP
-    &kp TAB   &kp Q    &kp W    &kp E     &kp R  &kp T         /**/ &kp Y     &kp U    &kp I     &kp O     &kp P     &kp LBKT  &kp RBKT &kp BSPC &kp PG_DN
+    &kp ESC   &kp N1   &kp N2   &kp N3    &kp N4 &kp N5 &kp N6 /**/ &kp N7    &kp N8   &kp N9    &kp N0    &kp MINUS &kp EQUAL &kp GRAVE &kp BSLH &kp C_MUTE
+    &kp TAB   &kp Q    &kp W    &kp E     &kp R  &kp T         /**/ &kp Y     &kp U    &kp I     &kp O     &kp P     &kp LBKT  &kp RBKT &kp BSPC &mo 1 
     &kp LCTRL &kp A    &kp S    &kp D     &kp F  &kp G         /**/ &kp H     &kp J    &kp K     &kp L     &kp SEMI  &kp SQT   &kp RET  &kp DEL
     &kp LSHFT &mo 1    &kp Z    &kp X    &kp C   &kp V  &kp B  /**/ &kp N     &kp M    &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT &kp UP
-    &kp LCTRL &kp LGUI &kp LALT &kp SPACE &studio_unlock                /**/ &kp SPACE &kp RALT &kp RGUI     &kp RCTRL &kp LEFT  &kp DOWN  &kp RIGHT
+    &kp LCTRL &kp LGUI &kp LALT &kp SPACE &mo 1               /**/ &kp SPACE &kp RALT &kp RGUI     &kp RCTRL &kp LEFT  &kp DOWN  &kp RIGHT
             >;
 
             // for encoder, which isn't yet supported over BLE
-            sensor-bindings = <&inc_dec_kp L R>;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
 // ----------------------------------------------     -----------------------------------------------------
@@ -43,10 +43,10 @@
 
         fn_layer {
             bindings = <
-    &kp GRAVE &kp F1       &kp F2       &kp F3       &kp F4 &kp F5 &kp F6 /**/ &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12 &trans &trans         &kp HOME
-    &trans     &kp HOME  &kp PG_DN       &kp PG_UP &kp END &trans         /**/ &trans   &kp HOME &kp PG_DN &kp PG_UP &kp END  &trans  &trans &trans         &kp END
-    &trans     &kp LEFT     &kp DOWN     &kp UP &kp RIGHT &trans          /**/ &kp HOME &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &kp END  &trans    &trans
-    &trans     &trans      &kp HOME  &kp PG_DN  &kp PG_UP &kp END &trans  /**/ &trans   &kp HOME &kp PG_DN &kp PG_UP &kp END   &trans  &kp PG_UP  &trans
+    &sys_reset &kp F1       &kp F2       &kp F3       &kp F4 &kp F5 &kp F6 /**/ &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12 &trans &trans         &kp HOME
+    &sys_reset &kp HOME  &kp PG_DN       &kp PG_UP &kp END &trans         /**/  &kp HOME &kp PG_DN &kp PG_UP &kp END  &trans   &trans  &trans &sys_reset         &kp END
+    &trans     &kp LEFT     &kp DOWN     &kp UP &kp RIGHT &studio_unlock          /**/   &kp LEFT &kp DOWN  &kp UP  &kp RIGHT &kp END   &trans  &trans    &trans
+    &trans     &trans      &kp HOME  &kp PG_DN  &kp PG_UP &kp END &trans  /**/     &kp HOME &kp PG_DN &kp PG_UP &kp END &trans    &trans  &kp PG_UP
     &trans     &trans       &trans       &trans       &trans              /**/ &trans &trans &trans &trans                   &kp HOME  &kp PG_DN  &kp END
             >;
         };
