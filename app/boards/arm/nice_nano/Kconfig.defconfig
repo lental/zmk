@@ -4,10 +4,7 @@
 if BOARD_NICE_NANO || BOARD_NICE_NANO_V2
 
 config BOARD
-	default "Tree.len()"
-
-config ZMK_KEYBOARD_NAME
-	default "Tree.len()"
+    default "nice_nano"
 
 if USB_DEVICE_STACK
 
@@ -18,17 +15,5 @@ endif # USB_DEVICE_STACK
 
 config BT_CTLR
     default BT
-
-config ZMK_SPLIT
-	default y
-
-config ZMK_SPLIT_ROLE_CENTRAL
-	default y
-
-config ZMK_BLE_SPLIT_CENTRAL_BROADCAST_HID
-  default y
-
-config  ZMK_STUDIO
-	default y
 
 endif # BOARD_NICE_NANO || BOARD_NICE_NANO_V2

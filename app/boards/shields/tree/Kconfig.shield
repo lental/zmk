@@ -6,3 +6,16 @@ config TREE_RIGHT
 
 config TREE_CENTRAL
 	def_bool $(shields_list_contains,tree_central)
+
+config TREE_CENTRAL_NANO
+	def_bool $(shields_list_contains,tree_central_nano)
+	select ZMK_BLE_CLEAR_BONDS_ON_START
+	select ZMK_SPLIT_ROLE_CENTRAL
+	select ZMK_KSCAN_DIRECT_POLLING
+	select ZMK_BLE_SPLIT_CENTRAL_BROADCAST_HID
+	select ZMK_STUDIO
+	select BT
+	select BT_SMP_ALLOW_UNAUTH_OVERWRITE
+	select BT_SMP
+	select BT_SIGNING
+	select BT_DIS

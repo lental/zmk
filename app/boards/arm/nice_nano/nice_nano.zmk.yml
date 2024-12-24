@@ -1,10 +1,8 @@
 file_format: "1"
 id: nice_nano
-name: nice!nano v2
+name: nice!nano v1
 type: board
 arch: arm
-features:
-  - studio
 outputs:
   - usb
   - ble

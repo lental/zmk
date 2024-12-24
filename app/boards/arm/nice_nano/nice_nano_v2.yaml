@@ -2,17 +2,14 @@ identifier: nice_nano_v2
 name: nice!nano v2
 type: mcu
 arch: arm
-snippet: studio-rpc-usb-uart
 toolchain:
   - zephyr
   - gnuarmemb
   - xtools
 supported:
-  - keys
   - adc
   - usb_device
   - ble
   - ieee802154
   - pwm
   - watchdog
-snippet: zmk-usb-logging
