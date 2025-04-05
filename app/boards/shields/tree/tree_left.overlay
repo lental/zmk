@@ -43,8 +43,25 @@
 	};
 };
 
-&right_encoder { // these  GPIOs are irrelevant, just to compile
-	a-gpios = <&gpio0 25 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-	b-gpios = <&gpio0 26 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+&right_encoder { 
+	a-gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	b-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 	status = "disabled";
+};
+
+&central_encoder {
+	a-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	b-gpios = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	status = "disabled";
+};
+&back_encoder {
+	a-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	b-gpios = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	status = "disabled";
+};
+
+&thumb_encoder { // these  GPIOs are irrelevant, just to compile
+	a-gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	b-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	status = "okay";
 };

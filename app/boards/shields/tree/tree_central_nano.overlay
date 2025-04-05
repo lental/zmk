@@ -40,24 +40,36 @@
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&right_encoder &central_encoder>;
+        sensors = <&right_encoder &central_encoder &thumb_encoder &back_encoder>;
         triggers-per-rotation = <40>;
     };
 
     right_encoder: encoder_right {
         compatible = "alps,ec11";
-        label = "RIGHT_ENCODER";
         a-gpios = <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         status = "okay";
     };
 
-    central_encoder: encoder_left {
+    central_encoder: encoder_central {
         compatible = "alps,ec11";
-        label = "central_encoder";
         a-gpios = <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         status = "okay";
+    };
+
+    thumb_encoder: encoder_thumb {
+        compatible = "alps,ec11";
+        a-gpios = <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        status = "disabled";
+    };
+
+    back_encoder: encoder_back {
+        compatible = "alps,ec11";
+        a-gpios = <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        status = "disabled";
     };
 };
 

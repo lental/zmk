@@ -28,13 +28,24 @@
      
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&right_encoder>;
+        sensors = <&right_encoder &central_encoder &thumb_encoder &back_encoder>;
         triggers-per-rotation = <40>;
     };
 
     right_encoder: encoder_right {
         compatible = "alps,ec11";
-        label = "RIGHT_ENCODER";
+    };
+
+    central_encoder: encoder_central {
+        compatible = "alps,ec11";
+    };
+
+    thumb_encoder: encoder_thumb {
+        compatible = "alps,ec11";
+    };
+
+    back_encoder: encoder_back {
+        compatible = "alps,ec11";
     };
 
 	leds {
