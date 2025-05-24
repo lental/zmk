@@ -15,7 +15,9 @@
 
 	kscan0: kscan {
 		compatible = "zmk,kscan-gpio-matrix";
-    diode-direction = "col2row";
+	    diode-direction = "col2row";
+	    debounce-press-ms = <3>;
+	    debounce-release-ms = <20>;
 		col-gpios
 			= <&gpio0 10 (GPIO_ACTIVE_HIGH)>
 			, <&gpio0 9 (GPIO_ACTIVE_HIGH)>
@@ -53,16 +55,27 @@
 	a-gpios = <&gpio0 25 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 	b-gpios = <&gpio0 26 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 	status = "okay";
+    steps = <80>;
+};
+
+
+&central_encoder {
+	a-gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+	b-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+    status = "disabled";
+    steps = <80>;
 };
 
 &thumb_encoder { // these  GPIOs are irrelevant, just to compile
 	a-gpios = <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 	b-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 	status = "disabled";
+    steps = <80>;
 };
 
 &back_encoder {
 	a-gpios = <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 	b-gpios = <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 	status = "okay";
+    steps = <80>;
 };
