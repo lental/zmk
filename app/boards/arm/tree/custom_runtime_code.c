@@ -107,7 +107,7 @@ static struct settings_handler ble_peripheral_settings_handler = {
 
 #endif // IS_ENABLED(CONFIG_SETTINGS)
 
-static int init(const struct device *port) {
+static int init() {
 	printk("HEllooo tree start\n");
 	int ret = gpio_pin_configure_dt(&led_conn, GPIO_OUTPUT_ACTIVE);
 	
