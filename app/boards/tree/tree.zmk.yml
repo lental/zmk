@@ -1,0 +1,12 @@
+file_format: "1"
+id: tree
+name: tree
+type: board
+arch: arm
+features:
+  - keys
+  - ble
+  - studio
+outputs:
+  - usb
+  - ble

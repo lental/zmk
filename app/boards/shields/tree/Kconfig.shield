@@ -1,0 +1,19 @@
+config TREE_LEFT
+	def_bool $(shields_list_contains,tree_left)
+
+config TREE_RIGHT
+	def_bool $(shields_list_contains,tree_right)
+
+config TREE_CENTRAL
+	def_bool $(shields_list_contains,tree_central)
+
+config TREE_CENTRAL_NANO
+	def_bool $(shields_list_contains,tree_central_nano)
+	select ZMK_SPLIT_ROLE_CENTRAL
+	select ZMK_KSCAN_DIRECT_POLLING
+	select ZMK_STUDIO
+	select BT
+	select BT_SMP_ALLOW_UNAUTH_OVERWRITE
+	select BT_SMP
+	select BT_SIGNING
+	select BT_DIS

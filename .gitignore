@@ -6,6 +6,12 @@
 /zephyr
 /zmk-config
 /build
+*/build_*/
+*/nlbuild
+*/ncbuild
+*/nrbuild
+*.DS_Store
+__pycache__
 
 # macOS
 *.DS_Store

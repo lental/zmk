@@ -1,0 +1,34 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+/ {
+	chosen {
+		zmk,kscan = &kscan0;
+	};
+
+	kscan0: kscan {
+		compatible = "zmk,kscan-gpio-matrix";
+    diode-direction = "col2row";
+    debounce-press-ms = <3>;
+    debounce-release-ms = <20>;
+		row-gpios
+			= <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			;
+		col-gpios
+			= <&gpio0 23 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			, <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+			;
+	};
+};

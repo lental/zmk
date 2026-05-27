@@ -1,0 +1,5 @@
+board:
+  name: tree
+  full_name: tree
+  socs:
+    - name: nrf52832

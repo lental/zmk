@@ -1,0 +1,26 @@
+
+if TREE_CENTRAL_NANO
+
+config ZMK_KEYBOARD_NAME
+	default "Tree.len()"
+
+config ZMK_SPLIT
+	default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+	default y
+
+config  ZMK_STUDIO
+	default y
+
+config  ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+  default 3
+
+endif
+
+if TREE_LEFT || TREE_RIGHT
+
+config ZMK_SPLIT
+	default y
+
+endif

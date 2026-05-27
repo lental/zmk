@@ -232,6 +232,17 @@ int reserve_peripheral_slot(const bt_addr_le_t *addr) {
             peripherals[i].state = PERIPHERAL_SLOT_STATE_CONNECTING;
             return i;
         }
+
+        // mlen: dunno if this stuff is useful but added it
+        if (peripherals[i].state == PERIPHERAL_SLOT_STATE_CONNECTED) {
+            char dev[BT_ADDR_LE_STR_LEN];
+            bt_addr_le_to_str(addr, dev, sizeof(dev));
+            LOG_DBG("[DEVICE]: %s, Slot %d was connected already, releasing dead connection.", dev, i);
+            release_peripheral_slot(i);
+            peripherals[i].state = PERIPHERAL_SLOT_STATE_CONNECTING;
+            return i;
+        }
+        LOG_DBG("Slot %d not open. it was...  %d", i, peripherals[i].state);
     }
 
     return -ENOMEM;
